@@ -13,7 +13,6 @@ if TYPE_CHECKING:
 lib = _get_shared_lib_location(__file__)
 
 
-
 def reverse_geocode(lat: IntoExpr, long: IntoExpr) -> pl.Expr:
     lat = parse_into_expr(lat)
     return lat.register_plugin(

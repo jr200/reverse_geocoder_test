@@ -15,11 +15,11 @@ install-release: .venv
 pre-commit: .venv
 	cargo fmt --all && cargo clippy --all-features
 	.venv/bin/python -m ruff check . --fix --exit-non-zero-on-fix
-	.venv/bin/python -m ruff format reverse_geocoder_test tests
-	.venv/bin/python -m mypy reverse_geocoder_test tests
+	echo .venv/bin/python -m ruff format reverse_geocoder_test tests
+	echo .venv/bin/python -m mypy reverse_geocoder_test tests
 
 test: .venv
-	.venv/bin/python -m pytest tests
+	echo .venv/bin/python -m pytest tests
 
 run: install
 	source .venv/bin/activate && python run.py

@@ -1,6 +1,6 @@
-use pyo3_polars::derive::polars_expr;
+#![allow(clippy::unused_unit)]
 use polars::prelude::*;
-
+use pyo3_polars::derive::polars_expr;
 
 use polars_arrow::array::MutablePlString;
 use polars_core::utils::align_chunks_binary;
@@ -19,7 +19,7 @@ fn reverse_geocode(inputs: &[Series]) -> PolarsResult<Series> {
         .map(|(lat_arr, lon_arr)| {
             let mut mutarr = MutablePlString::with_capacity(lat_arr.len());
 
-            for(lat_opt_val, lon_opt_val) in lat_arr.iter().zip(lon_arr.iter()) {
+            for (lat_opt_val, lon_opt_val) in lat_arr.iter().zip(lon_arr.iter()) {
                 match (lat_opt_val, lon_opt_val) {
                     (Some(lat_val), Some(lon_val)) => {
                         let res = &geocoder.search((*lat_val, *lon_val)).record.name;
@@ -35,5 +35,4 @@ fn reverse_geocode(inputs: &[Series]) -> PolarsResult<Series> {
 
     let out: StringChunked = unsafe { ChunkedArray::from_chunks("placeholder", chunks) };
     Ok(out.into_series())
-
 }

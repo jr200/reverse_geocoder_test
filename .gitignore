@@ -1,3 +1,5 @@
 *.so
 *.pyc
 target
+.history
+.venv/
